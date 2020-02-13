@@ -10,11 +10,11 @@ def gen_slug(s):
     return new_slug + str(int(time()))
 
 class Product(models.Model):
-    category = models.ForeignKey('FKNAME', on_delete=models.SET_NULL, verbose_name='Select category')
+    category = models.ManyToManyField(Category)
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(unique=True, blank=True)
-    img = models.ImageField(upload_to=MEDIA, null=False)
-    banner = models.ImageField(upload_to=MEDIA, null=False)
+    img = models.ImageField(upload_to='media', null=False)
+    banner = models.ImageField(upload_to='media', null=False)
     description = models.TextField()
     header = models.CharField(max_length=150, blank=True, null=True)
     sub_header = models.CharField(max_length=150, blank=True, null=True)
@@ -27,9 +27,13 @@ class Product(models.Model):
     model = models.ForeignKey("app.Model", on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     mods = models.OneToOneField("app.Model", on_delete=models.SET_NULL)
-    parameters = models.OneToOneField("app.Model", on_delete=models.SET_NULL)
-    seller = models.ForeignKey(User, on_delete=models.CASCADE,
-                               related_name='Seller', limit_choices_to={'is_staff': True})
+    # parameters = models.OneToOneField("app.Model", on_delete=models.SET_NULL)
+    seller = models.ForeignKey(
+                                'User',
+                                on_delete=models.CASCADE,
+                                related_name='Seller',
+                                limit_choices_to={'is_staff': True}
+                              )
     pub_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -41,7 +45,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = gen_slug(self.title)
+            self.slug = gen_slug(self.name)
         super().save(*args, **kwargs)  # Call the real save() method
 
     def __str__(self):
@@ -69,7 +73,7 @@ class Comment(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50, db_index=True)
     slug = models.SlugField(unique=True, blank=True)
-    banner = models.ImageField(upload_to=MEDIA)
+    banner = models.ImageField(upload_to='media')
 
     def get_absolute_url(self):
         return reverse('product:category_det', kwargs={'slug': self.slug})
@@ -86,6 +90,7 @@ class Category(models.Model):
 
 
 class Brand(models.Model):
-    name
-    slug
-    descr
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(unique=True, blank=True)
+    description = models.TextField()
+    country = models.CharField(max_length=50)
