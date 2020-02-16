@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os, sys
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Build paths inside the project like this: os.path.join(BASE_DIR, )
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'Apps'))
@@ -29,10 +29,51 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+JET_PROJECT = 'alin_son'
+JET_TOKEN = '242579f8-1231-44ef-90a0-62e1a240bdcd'
 
+# JET_SIDE_MENU_COMPACT = True
+# JET_CHANGE_FORM_SIBLING_LINKS = True
+JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'
+JET_APP_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultAppIndexDashboard'
+JET_THEMES = [
+    {
+        'theme': 'default',  # theme folder name
+        'color': '#47bac1',  # color of the theme's button in user menu
+        'title': 'Default'  # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet_django',
+    'jet',
     'crispy_forms',
     'Product.apps.ProductConfig',
     'Accounts.apps.AccountsConfig',
@@ -143,3 +184,60 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'profile'
 
 LOGIN_URL = 'login'
+
+
+
+# JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
+#     {'label': _('General'), 'app_label': 'core', 'items': [
+#         {'name': 'help.question'},
+#         {'name': 'pages.page', 'label': _('Static page')},
+#         {'name': 'city'},
+#         {'name': 'validationcode'},
+#         {'label': _('Analytics'), 'url': 'http://example.com',
+#          'url_blank': True},
+#     ]},
+#     {'label': _('Users'), 'items': [
+#         {'name': 'core.user'},
+#         {'name': 'auth.group'},
+#         {'name': 'core.userprofile', 'permissions': ['core.user']},
+#     ]},
+#     {'app_label': 'banners', 'items': [
+#         {'name': 'banner'},
+#         {'name': 'bannertype'},
+#     ]},
+# ]
+
+# JET_SIDE_MENU_CUSTOM_APPS = [
+#     ('core', [  # Each list element is a tuple with application name (app_label) and list of models
+#         'User',
+#         'MenuItem',
+#         'Block',
+#     ]),
+#     ('shops', [
+#         'Shop',
+#         'City',
+#         'MetroStation',
+#     ]),
+#     ('feedback', [
+#         'Feedback',
+#     ]),
+# ]
+
+# JET_SIDE_MENU_ITEMS = {
+#     'admin': [
+#         {'label': _('General'), 'app_label': 'core', 'items': [
+#             {'name': 'help.question'},
+#             {'name': 'pages.page'},
+#             {'name': 'city'},
+#             {'name': 'validationcode'},
+#         ]},
+        
+#     ],
+#     'custom_admin': [
+#         {'app_label': 'talks', 'items': [
+#             {'name': 'talk'},
+#             {'name': 'talkmessage'},
+#         ]},
+        
+#     ]
+# }
