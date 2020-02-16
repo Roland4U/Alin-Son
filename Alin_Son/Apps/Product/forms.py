@@ -3,14 +3,6 @@ from .models import *
 from django.core.exceptions import ValidationError
 
 
-class CategoryForm(forms.Form):
-    title = forms.CharField(max_length=70)
-    slug = forms.SlugField(max_length=70)
-
-    title.widget.attrs.update({'class': 'form-control'})
-    slug.widget.attrs.update({'class': 'form-control'})
-
-
     def clean_slug(self):
         new_slug = self.cleaned_data['slug'].lower()
 
@@ -27,7 +19,7 @@ class CategoryForm(forms.Form):
             title=self.cleaned_data['title'],
             slug=self.cleaned_data['slug']
         )
-        return new_tag
+        return new_category
 
 
 
