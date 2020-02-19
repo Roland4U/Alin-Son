@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Всплывающее окно на css,javascript</title>
+    <style>
+        .regButton {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 6px 24px;
+            cursor: pointer;
+        }
+
+        .regButton:hover {
+            background: #ccc;
+        }
+
+        #window {
+            width: 350px;
+            height: 530px;
+            margin: 40px auto;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            z-index: 150; display: none;
+             position: fixed; left: 0;right: 0;top:0;bottom: 0;
+        } 
+        .form{
+            width: 275px; margin: -15px auto 20px auto; text-align: center;} 
+        .input{
+                width: 260px;padding: 5px; margin-bottom: 10px; } 
+        .radio{
+            margin-bottom: 10px;} .close{margin: 10px 0 0 320px;cursor: pointer;border: 1px solid #ccc; padding: 2px; background: #ccc;} .close:hover{
+                background: #fff;} 
+        #gray{opacity: 0.8; padding: 15px;
+            background-color: rgba(1,1,1,0.75); position: fixed; left: 0;right: 0;top:0;bottom: 0; display: none; z-index:100; overflow: auto; } 
+        body { background: gold; }
+    </style>
+</head>
+
+<body>
+<center><button onclick="show('block')" class="regButton">Регистрация</button>
+    <video width="100%" src="i/Sun.mp4" autoplay loop></video>
+    </center>
+    <!-- Задний прозрачный фон -->
+    <div onclick="show('none')" id="gray"></div>
+<div id="window">
+    <!-- Картинка крестика -->
+    <img class="close" src="i/close.png" alt=""  onclick="show('none')">
+    <div class="form">
+        <h2>Регистрация</h2>
+        <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+            <input type="text" placeholder="Имя" name="name1" class="input">
+            <input type="text" placeholder="Фамилия" name="name2" class="input">
+            <input type="email" placeholder="Емеил" name="email1" class="input">
+            <input type="email" placeholder="Подтвердите адрес Электронной Почты" name="email2" class="input">
+            <input type="password" placeholder="Пароль" name="pass1" class="input">
+            <input type="password" placeholder="Подтвердите пароль" name="pass2" class="input">
+            <input type='tel' placeholder="Мобильный телефон" name="tel" class="input">
+            <input type="radio" name="radio1"> Мужчина <input type="radio" name="radio1" class="radio"> Женщина
+            <input type="submit" value="Регистрация" name="sab" class="input"> Нажимая «Регистрация», вы подтверждаете, что прочитали и согласны с нашими Условиями Пользования и Политикой Конфиденциальности.
+        </form>
+    </div>
+</div>
+ <script>
+//Функция показа
+	function show(state)
+	{
+	document.getElementById('window').style.display = state;	
+	document.getElementById('gray').style.display = state; 		
+	}	
+</script>   
+</body>
+
+</html>

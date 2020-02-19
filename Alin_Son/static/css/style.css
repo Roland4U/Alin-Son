@@ -422,6 +422,41 @@ textarea.input {
   color: #F8694A;
 }
 
+/**/
+
+.header-btns1>li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px 0px;
+}
+
+.header-btns1>li+li {
+  margin-left: 15px;
+}
+
+.header-btns1>li .header-btns-icon {
+  position: relative;
+  float: left;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #30323A;
+  background-color: #FFF;
+  border: 1px solid #DADADA;
+}
+
+.header-btns1 .dropdown-toggle1 {
+  display: block;
+  cursor: pointer;
+}
+
+.header-account1.dropdown1 .custom-menu1>li>a>i {
+  margin-right: 15px;
+  color: #F8694A;
+}
+
 /*----------------------------*\
 	Cart header
 \*----------------------------*/
@@ -622,6 +657,50 @@ textarea.input {
   padding: 10px 0px;
   text-transform: uppercase;
 }
+
+/**/
+
+/* .custom-menu1 {
+  position: absolute;
+  padding: 15px;
+  background: #FFF;
+  -webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 100;
+  top: 100%;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+.dropdown.open>.custom-menu1 {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*-- Default Dropdown --*/
+
+/*.dropdown.default-dropdown>.custom-menu1 {
+  border-top: 2px solid #F8694A;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(15px);
+  -ms-transform: translateX(-50%) translateY(15px);
+  transform: translateX(-50%) translateY(15px);
+}
+
+.dropdown.default-dropdown.open>.custom-menu1 {
+  -webkit-transform: translateX(-50%) translateY(0px);
+  -ms-transform: translateX(-50%) translateY(0px);
+  transform: translateX(-50%) translateY(0px);
+}
+
+.dropdown.default-dropdown>.custom-menu1>li>a {
+  display: block;
+  padding: 10px 0px;
+  text-transform: uppercase;
+} */
 
 /*-- Mega Dropdown --*/
 

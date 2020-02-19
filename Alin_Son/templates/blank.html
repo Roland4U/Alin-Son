@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,20 +15,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="{% static './css/bootstrap.min.css' %}" />
 
 	<!-- Slick -->
-	<link type="text/css" rel="stylesheet" href="css/slick.css" />
-	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/slick-theme.css' %}" />
 
 	<!-- nouislider -->
-	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/nouislider.min.css' %}" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,6 +40,7 @@
 </head>
 
 <body>
+	<p>URL of this page: {{ request.get_full_path }} # :{{ request.path }}</p>
 	<!-- HEADER -->
 	<header>
 		<!-- top Header -->
@@ -80,7 +83,7 @@
 					<!-- Logo -->
 					<div class="header-logo">
 						<a class="logo" href="#">
-							<img src="./img/logo.png" alt="">
+							<img src="{% static './img/logo.png' %}" alt="">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -109,7 +112,7 @@
 								</div>
 								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
 							</div>
-							<a href="#" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+							<a href="#" class="text-uppercase" data-toggle="modal" data-target="#LoginModal">Login</a> / <a href="#" class="text-uppercase" data-toggle="modal" data-target="#RegModal">Join</a>
 							<ul class="custom-menu">
 								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
 								<li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
@@ -121,6 +124,72 @@
 						</li>
 						<!-- /Account -->
 
+
+						<!-- Login Modal -->
+						<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="LoginModalLabel">Login in Your Accaunt</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form action="{% url 'login' %}" method="POST">{% csrf_token %}
+											{% include "base/login.html" %}
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Login</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<script>
+
+							 if (document.location.href.indexOf('/login') !=-1) {
+
+							     $("#LoginModal").modal('show');
+
+							   }
+
+						</script>
+
+						
+						<!-- Register Modal -->
+							<script>
+	
+								 if (document.location.href.indexOf('/reg') !=-1) {
+	
+								     $("#RegModal").modal('show');
+	
+								   }
+	
+							</script>
+						<div class="modal fade" id="RegModal" tabindex="-1" role="dialog" aria-labelledby="RegModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="RegModalLabel">Register now</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								 <form action="{% url 'reg' %}" method="POST">{% csrf_token %}
+									{% include "base/user_reg.html" %}
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Register</button>
+								</form>
+							</div>
+							</div>
+						</div>
+						</div>
+						
 						<!-- Cart -->
 						<li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -137,7 +206,7 @@
 									<div class="shopping-cart-list">
 										<div class="product product-widget">
 											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
+												<img src="{% static './img/thumb-product01.jpg' %}" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
@@ -147,7 +216,7 @@
 										</div>
 										<div class="product product-widget">
 											<div class="product-thumb">
-												<img src="./img/thumb-product01.jpg" alt="">
+												<img src="{% static './img/thumb-product01.jpg' %}" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
@@ -178,6 +247,9 @@
 		<!-- container -->
 	</header>
 	<!-- /HEADER -->
+
+
+{% block navigation %}
 
 	<!-- NAVIGATION -->
 	<div id="navigation">
@@ -542,6 +614,11 @@
 		<!-- /container -->
 	</div>
 	<!-- /NAVIGATION -->
+	
+{% endblock navigation %}
+
+
+{% block breadcrump %}
 
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb">
@@ -553,7 +630,11 @@
 		</div>
 	</div>
 	<!-- /BREADCRUMB -->
+  
+{% endblock breadcrump %}
 
+
+{% block content %}	
 	<!-- section -->
 	<div class="section">
 		<!-- container -->
@@ -567,6 +648,9 @@
 	</div>
 	<!-- /section -->
 
+{% endblock content %}
+
+
 	<!-- FOOTER -->
 	<footer id="footer" class="section section-grey">
 		<!-- container -->
@@ -579,7 +663,7 @@
 						<!-- footer logo -->
 						<div class="footer-logo">
 							<a class="logo" href="#">
-		            <img src="./img/logo.png" alt="">
+		            <img src="{% static './img/logo.png' %}" alt="">
 		          </a>
 						</div>
 						<!-- /footer logo -->
@@ -664,14 +748,21 @@
 		<!-- /container -->
 	</footer>
 	<!-- /FOOTER -->
-
+	<script>
+//Функция показа
+		function show(state)
+		{
+		document.getElementById('window').style.display = state;	
+		//document.getElementById('gray').style.display = state; 		
+		}	
+	</script>
 	<!-- jQuery Plugins -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/slick.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/slick.min.js' %}"></script>
+	<script src="{% static 'js/nouislider.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 

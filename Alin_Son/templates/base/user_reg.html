@@ -1,9 +1,7 @@
-{% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block content %}
-    <div class="container mt-5">
-            <form action="{% url 'reg' %}" method="POST">{% csrf_token %}
-                {% for field in form %}
+    <!-- <div class="container mt-5"> -->
+            <!-- <form action="{% url 'reg' %}" method="POST">{% csrf_token %} -->
+                {% for field in reg_form %}
                     <div class="form-group">
                          {% if field.errors %}
                             <div class="alert alert-danger" role="alert">
@@ -14,10 +12,9 @@
                     
                     
                     {% endfor %}
-                    {{ form|crispy }}
+                    {{ reg_form|crispy }}
                    
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+            <!-- </form> -->
             
-    </div>
-{% endblock content %}
+    <!-- </div> -->

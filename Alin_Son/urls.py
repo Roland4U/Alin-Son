@@ -20,12 +20,14 @@ from .views import main, profile
 from django.contrib.auth import views as login
 from django.conf.urls.static import static
 from django.conf.urls import include, url
+from .forms import UserLogForm
+
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
 
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
-    path('', main, name='main'),
+    path('', main.as_view(), name='main'),
     path('reg', reg.as_view(), name='reg'),
     path('profile', profile, name='profile'),
     path('login', login.LoginView.as_view(template_name='base/login.html'), name='login'),
