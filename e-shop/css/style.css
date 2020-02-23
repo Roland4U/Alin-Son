@@ -64,6 +64,8 @@ body {
   font-family: 'Hind', sans-serif;
   color: #4A4E5A;
   overflow-x: hidden;
+  background-color: rgb(66, 66, 66)!important;
+  background-image: url('http://www.ok-s.ru/wp-content/uploads/2014/06/leather-black.jpg');
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -40,7 +40,7 @@
 </head>
 
 <body>
-	<p>URL of this page: {{ request.get_full_path }} # :{{ request.path }}</p>
+	<!-- <p>URL of this page: {{ request.get_full_path }} # :{{ request.path }}</p> -->
 	<!-- HEADER -->
 	<header>
 		<!-- top Header -->
@@ -182,6 +182,7 @@
 									{% include "base/user_reg.html" %}
 								</div>
 								<div class="modal-footer">
+									<span>If you have previously registered with us, </span><a href="#" class="text-uppercase" data-toggle="modal" data-target="#LoginModal">Login account</a>
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 									<button type="submit" class="btn btn-primary">Register</button>
 								</form>
@@ -605,7 +606,7 @@
 								<li><a href="product-page.html">Product Details</a></li>
 								<li><a href="checkout.html">Checkout</a></li>
 							</ul>
-						</li>
+						</li>  096408666
 					</ul>
 				</div>
 				<!-- menu nav -->
